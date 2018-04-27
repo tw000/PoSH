@@ -10,6 +10,15 @@ nslookup google.com
 nslookup 216.58.194.110
 nslookup 127.0.0.1
 
-# Get-DnsServer, Get-DnsServerZone
+# Now in PowerShell
+Resolve-DnsName google.com
+Resolve-DnsName 216.58.194.110
+Resolve-DnsName 127.0.0.1
 
+# Now for the DNS Server
+# Get-DnsServer
+
+# DNS Zones (Primary / AD Integrated / File / Reverse)
+
+# Build Example zone forward and reverse in files (No AD today)
 
