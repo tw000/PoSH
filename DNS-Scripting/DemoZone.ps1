@@ -9,7 +9,7 @@ Add-DnsServerPrimaryZone -ComputerName localhost -Name $Zone -ZoneFile "$Zone.dn
 Add-DnsServerPrimaryZone -ComputerName localhost -NetworkId $NetCIDR -ZoneFile "$RZone.dns" -DynamicUpdate None
 
 Add-DnsServerResourceRecord -ComputerName localhost -A -ZoneName $Zone -Name "testhost" -IPv4Address "$Net.2" -CreatePtr
-Add-DnsServerResourceRecord -ComputerName localhost -Ptr
+#Add-DnsServerResourceRecord -ComputerName localhost -Ptr  # PTR record is not necessary
 
 # Create 50 example records
 for( $i = 25; $i -le 75 ; $i++ )
