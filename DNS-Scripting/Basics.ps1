@@ -1,5 +1,16 @@
-# DNS Commands, Cmdlets, and DNS Basics - working w/ MS DNS Servers in PoSH
-# ***You will need RSAT or a Windows Server to follow along.***
+#---------------------------------------------------------------------------
+<#
+DNS Commands, Cmdlets, and DNS Basics - working w/ MS DNS Servers in PoSH
+#>
+#---------------------------------------------------------------------------
+<#
+Note: ***You will need RSAT or a Windows Server to follow along.***
+Tested and developed on Windows PowerShell 5.1.
+
+In this presentation, I'll discuss the basics of DNS forward and reverse lookups, A records, and PTR records.
+Then I'll demo getting info from a local MS DNS server using powershell and the export of records into csv files.
+#>
+#---------------------------------------------------------------------------
 
 # nslookup for forward and reverse
 # DNS A Records
