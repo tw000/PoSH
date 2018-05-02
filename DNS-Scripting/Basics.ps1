@@ -22,3 +22,7 @@ Resolve-DnsName 127.0.0.1
 
 # Build Example zone forward and reverse in files (No AD today)
 
+# Export the Forward zone into a csv file
+
+# Export the Reverse zone into a csv file
+
