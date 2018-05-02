@@ -16,13 +16,15 @@ Resolve-DnsName 216.58.194.110
 Resolve-DnsName 127.0.0.1
 
 # Now for the DNS Server
-# Get-DnsServer
+Get-DnsServer -CompuerName localhost        # displays many details about the local DNS Server, if installed
+Get-DnsServerZone -ComputerName localhost   # displays a list of all the zones hosted on the local DNS Server
 
 # DNS Zones (Primary / AD Integrated / File / Reverse)
-
-# Build Example zone forward and reverse in files (No AD today)
+# Build Example Primary zones (forward and reverse) in files (No AD today)
+# <show & run DemoZone.ps1>
 
 # Export the Forward zone into a csv file
+# <code sample to export A and CNAME records from all zones> 
 
 # Export the Reverse zone into a csv file
-
+# <code sample to export PTR records from all zones>
