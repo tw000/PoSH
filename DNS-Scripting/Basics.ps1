@@ -35,7 +35,55 @@ Get-DnsServerZone -ComputerName localhost   # displays a list of all the zones h
 # <show & run DemoZone.ps1>
 
 # Export the Forward zone into a csv file
-# <code sample to export A and CNAME records from all zones> 
+$zones = (Get-DnsServerZone -ComputerName localhost | Where-Object {$_.ZoneType -eq "Primary" -and $_.IsReverseLookupZone -eq $FALSE -and $_.ZoneName -ne "TrustAnchors"}).ZoneName
+$results = foreach ($zone in $zones) {
+    $zoneDataA = Get-DnsServerResourceRecord $zone -RRType A -ComputerName localhost
+    $zoneDataCNAME = Get-DnsServerResourceRecord $zone -RRType CName -ComputerName localhost
+	foreach ($record in $zoneDataA)
+	{
+		[PSCustomObject]@{
+			ZoneName = $zone
+			HostName = $record.HostName
+			RecordType = $record.RecordType
+			RecordData = $record.RecordData.IPv4Address
+		}
+    }
+    foreach ($record in $zoneDataCNAME)
+	{
+		[PSCustomObject]@{
+			ZoneName = $zone
+			HostName = $record.HostName
+			RecordType = $record.RecordType
+			RecordData = $record.RecordData.HostNameAlias
+		}
+    }
+}
+#$results | Out-GridView
+$results | Export-Csv -Path .\localhostFWD.csv -NoTypeInformation
 
 # Export the Reverse zone into a csv file
-# <code sample to export PTR records from all zones>
+$zones = (Get-DnsServerZone -ComputerName localhost | Where-Object {$_.ZoneType -eq "Primary" -and $_.IsReverseLookupZone -eq $true -and $_.ZoneName -ne "TrustAnchors"}).ZoneName
+$results = foreach ($zone in $zones) {
+	$zoneDataPTR = Get-DnsServerResourceRecord $zone -RRType Ptr -ComputerName localhost
+	foreach ($record in $zoneDataPTR)
+	{
+		$IP1 = $zone.split(".")
+        $IP2 = $record.Hostname.split(".")
+        If ($IP1[2] -eq "in-addr") {
+            $IPAddress = $IP1[1] + "." + $IP1[0] + "." + $IP2[1] + "." + $IP2[0]
+        } elseif ($IP1[1] -eq "in-addr" ) {
+            $IPAddress = $IP1[0] + "." + $IP2[2] + "." + $IP2[1] + "." + $IP2[0]
+        } else {
+            $IPAddress = $IP1[2] + "." + $IP1[1] + "." + $IP1[0] + "." + $IP2[0]
+        }
+        [PSCustomObject]@{
+			ZoneName = $zone
+			HostName = $record.HostName
+			RecordType = $record.RecordType
+            IPAddress = $IPAddress
+			RecordData = $record.RecordData.PtrDomainName
+		}
+	}
+}
+#$results | Out-GridView
+$results | Export-Csv -Path .\localhostREV.csv -NoTypeInformation
