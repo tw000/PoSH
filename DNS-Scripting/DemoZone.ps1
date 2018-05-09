@@ -1,4 +1,4 @@
-﻿# DNS Zones (Primary / AD Integrated / File / Reverse)
+# DNS Zones (Primary / AD Integrated / File / Reverse)
 # Build Example Primary zones (forward and reverse) in files (No AD today)
 
 # Create a Demo Zone in the DNS server
