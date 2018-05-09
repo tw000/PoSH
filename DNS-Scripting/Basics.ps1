@@ -25,6 +25,7 @@ nslookup 127.0.0.1
 Resolve-DnsName google.com
 Resolve-DnsName 216.58.194.110
 Resolve-DnsName 127.0.0.1
+Resolve-DnsName -DnsOnly 127.0.0.1
 
 # Now for the DNS Server
 Get-DnsServer -CompuerName localhost        # displays many details about the local DNS Server, if installed
