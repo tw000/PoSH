@@ -1,4 +1,7 @@
-﻿# Create a Demo Zone in the DNS server
+# DNS Zones (Primary / AD Integrated / File / Reverse)
+# Build Example Primary zones (forward and reverse) in files (No AD today)
+
+# Create a Demo Zone in the DNS server
 # example.sapsug.local
 $Zone = "example.sapsug.local"
 $Net = "10.0.213"
