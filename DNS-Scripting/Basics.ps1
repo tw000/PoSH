@@ -28,7 +28,7 @@ Resolve-DnsName 127.0.0.1
 Resolve-DnsName -DnsOnly 127.0.0.1
 
 # Now for the DNS Server
-Get-DnsServer -CompuerName localhost        # displays many details about the local DNS Server, if installed
+Get-DnsServer -ComputerName localhost        # displays many details about the local DNS Server, if installed
 Get-DnsServerZone -ComputerName localhost   # displays a list of all the zones hosted on the local DNS Server
 
 # DNS Zones (Primary / AD Integrated / File / Reverse)
